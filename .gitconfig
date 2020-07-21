@@ -1,0 +1,6 @@
+[name]
+	name = yosuke.nakabayashi
+	email = yousken_n72@msn.com
+
+[core]
+	excludefile = ~/norilog/.gitignore
