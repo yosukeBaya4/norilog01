@@ -4,20 +4,20 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-textarea{
+textarea {
   width: 100%;
 }
-table.list{
+table.list {
   width: 100%;
 }
-table.list tr:nth-child(even){
+table.list tr:nth-child(even) {
   background-color: lightgray;
 }
-table.list th{
+table.list th {
   padding: 0.5em;
   background-color: darkgray;
 }
-table.list td{
+table.list td {
     padding: 0.5em;
     vertical-align: top;
 }
