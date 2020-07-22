@@ -1,6 +1,7 @@
 import json
+from datetime import datetime
 
-from flask import Flask, render_template
+from flask import Flask, request, render_template, redirect  # added redirect
 
 app = Flask(__name__)
 
@@ -29,7 +30,7 @@ def save_data(start, finish, memo, created_at):
         "start": start,
         "finish": finish,
         "memo": memo,
-        "created_at": created_at.strftime("%Y-%m-%d %h:%M")
+        "created_at": created_at.strftime("%Y-%m-%d %H:%M")
     })
     json.dump(database, open(DATA_FILE, mode='w', encoding="utf-8"), indent=4, ensure_ascii=False)
 
@@ -48,7 +49,21 @@ def index():
     """ Top page
     rendering the top page using render_template
     """
-    return render_template('index.html')
+    # read stored data
+    rides = load_data()
+    return render_template('index.html', rides=rides)
+
+@app.route('/save', methods=['POST'])
+def save():
+    """ url for data handover """
+    # put data typed into valiables, and save them
+    start = request.form.get('start')
+    finish = request.form.get('finish')
+    memo = request.form.get('memo')
+    created_at = datetime.now()      # set current datetime
+    save_data(start, finish, memo, created_at)
+    # go back to redirect
+    return redirect('/')
 
 
 if __name__ == '__main__':

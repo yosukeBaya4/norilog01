@@ -10,12 +10,12 @@
 </head>
 <body>
   <h1>乗りログ</h1>
-  <form class="" action="/save" method="post">
+  <form action="/save" method="post">
     <table>
       <tr>
         <td>
           <label for="start">出発</label><br/>
-          <input id="start" type="text" name="start/">
+          <input id="start" type="text" name="start"/>
         </td>
         <td>
           <label for="finish">到着</label><br/>
@@ -23,7 +23,7 @@
         </td>
         <td>
           <br/>
-          <button type="button" name="button">追加</button>
+          <button>追加</button>
         </td>
       </tr>
       <tr>
@@ -35,25 +35,21 @@
     </table>
   </form>
   <h3>乗り一覧</h3>
-  <table>
+  <table class="list">
     <tr>
       <th>出発</th>
       <th>到着</th>
       <th>日時</th>
       <th>メモ</th>
     </tr>
+    {% for ride in rides %}    
     <tr>
-      <td>恐山</td>
-      <td>片瀬江ノ島</td>
-      <td>2017-10-31</td>
-      <td>サーフィン</td>
+      <td>{{ ride.start }}</td>
+      <td>{{ ride.finish }}</td>
+      <td>{{ ride.created_at }}</td>
+      <td>{{ ride.memo }}</td>
     </tr>
-    <tr>
-      <td>恐山</td>
-      <td>代々木</td>
-      <td>2017-10-31</td>
-      <td>BPStudy</td>
-    </tr>
+    {% endfor %}
   </table>
 </body>
 </html>
